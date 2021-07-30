@@ -1,34 +1,23 @@
-const http = require('http'),
-    fs = require('fs');
+const express = require('express'),
+          app = express();
 
-function serverStaticFile(res, path, contentType, responseCode = 200) {
-    fs.readFile(__dirname + path, (err, data) => {
-        if (err) {
-            res.writeHead(500, { 'Content-Type' : contentType });
-            res.end('500 - Internal Error');
-        } else {
-            res.writeHead(responseCode, { 'Content-Type' : contentType });
-            res.end(data);
-        }
-    })
-}
+app.set('port', process.env.PORT || 3000);
 
+app.use((req, res) => {
+    res.type('text/html');
+    res.status(404);
+    res.send('404 - Not found');
+});
 
-http.createServer( (req, res) => {
-    
-    const path = req.url.replace(/\/?(?:\?.*)?$/, '').toLowerCase();
+app.use((err, req, res, next) => {
+    console.log(err.stack);
+    res.type('text/html');
+    res.status(500);
+    res.send('500 - Server Error');
+});
 
-    switch(path) {
-        case '':
-            serverStaticFile(res, '/public/home.html', 'text/html');
-            break;
-        case '/about':
-            serverStaticFile(res, '/public/about.html', 'text/html');
-            break;
-        default:
-            serverStaticFile(res, '/public/404.html', 'text/html', 404);
-            break;
-    }
-}).listen(3000);
+app.listen(app.get('port'), () => {
+    console.log('Express started from localhost: ' + app.get('port'));
+});
 
-console.log('Сервер запущен на localhost:3000');
+// page 48
