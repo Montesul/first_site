@@ -1,5 +1,5 @@
 const express = require('express'),
-path = require('path');
+    path = require('path');
 
 const app = express(),
     port = 3000;
@@ -7,17 +7,16 @@ const app = express(),
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.set('port', process.env.PORT || 3000);
 
-app.get('/', (req, res) => res.render('index', { title: "Home" }));
+app.get('/', (req, res) => res.render('./layouts/index', { title: "Home" }));
 
-app.get('/about', (req, res) => res.render('index', { title: "Home" }));
+app.get('/about', (req, res) => res.render('./layouts/index', { title: "About" }));
 
-app.use((req, res) => res.status(404).render('index', { title: "Home" }));
+app.use((req, res) => res.status(404).render('./layouts/index', { title: "404" }));
 
 app.use((err, req, res, next) => {
     console.log(err.stack);
-    res.status(500).render('index', { title: "Home" });
+    res.status(500).render('./layouts/index', { title: "Error" });
 });
 
 app.listen(port, () => {
