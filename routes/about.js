@@ -1,13 +1,12 @@
-const express = require('express');
-
 const express = require('express'),
     routes = express.Router();
 
-const url = '/about';
+const url = '/about',
+    menu = require('./menu');
 
 
 routes.get(url, (req, res) => {
-    res.render('index', {title: 'About'});
+    res.render('./layouts/about', {menu: menu, title: menu[1].title});
 })
 
 routes.post(url, (req, res) => {
@@ -21,8 +20,10 @@ routes.post(url, (req, res) => {
         return el.login === req.body.login && el.password === req.body.password;
     });
     
-    user ? res.render('index', {title: 'Login is complited'}):
-    res.status(401).render('index', {title: 'Login is failed'});
+    user ? res.render('./layouts/about', {title: 'Login is complited'}):
+    res.status(401).render('./layouts/about', {title: 'Login is failed'});
+    // user ? res.json({title: 'Login is complited'}):
+    // res.status(401).json({title: 'Login is failed'});
 })
 
 module.exports = routes;

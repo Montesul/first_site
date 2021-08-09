@@ -6,6 +6,7 @@ const app = express(),
     port = 3000;
 
 app.use(morgan('dev'));
+app.use(express.json());
 app.use(express.urlencoded({ extended: false}));
 
 app.set('views', path.join(__dirname, 'views'));
@@ -17,30 +18,12 @@ const home = require('./routes/home'),
 app.all('/', home);
 app.all('/about', about);
 
-app.post('/login', (req, res) => {
-    
-    const data = [
-        { login : 'admin', password : 'admin' },
-        { login : 'admin1', password: '12345' }
-    ];
 
-    let user = data.find(el => {
-        return el.login === req.body.login && el.password === req.body.password;
-    });
-    
-
-    user ? res.send('Login is complited') :
-    res.status(401).send('Login is failed');
-});
-
-
-
-
-app.use((req, res) => res.status(404).render('./index', { title: "404" }));
+app.use((req, res) => res.status(404).render('./err/404'));
 
 app.use((err, req, res, next) => {
     console.log(err.stack);
-    res.status(500).render('./index', { title: "Error" });
+    res.status(500).render('./err/500');
 });
 
 app.listen(port, () => {
