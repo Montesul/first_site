@@ -6,7 +6,7 @@ const url = '/about',
 
 
 routes.get(url, (req, res) => {
-    res.render('./layouts/about', {menu: menu, title: menu[1].title});
+    res.render('./layouts/about', {name: 'Gust', menu: menu, title: menu[1].title});
 })
 
 routes.post(url, (req, res) => {

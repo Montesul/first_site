@@ -1,0 +1,35 @@
+#gust_icon {
+    object-fit: cover;
+}
+
+#login_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    margin: -10px -10px;
+    background-color: gray;
+}
+
+.name{
+    width: 50px;
+    text-align: center;
+}
+
+#login_bar > img, input, button{
+    margin: 0 5px;
+}
+
+#input_login, #input_password {
+    width: 100px;
+}
+
+.form_input {
+    border-radius: 5px;
+    transition: all 0.5s ease 0s;
+    box-shadow: 0 0 0px red;
+}
+
+._error {
+    box-shadow: 0 0 15px red;
+}

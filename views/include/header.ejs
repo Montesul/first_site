@@ -1,4 +1,21 @@
+
+
+<header>
+<div id="login_bar">
+<img id="gust_icon" src="/public/static/gust_icon.png" alt="gust-icon" width="50px" height="50px">
+<h4 class="name"><%= name %> </h4>
+<form id="form" action="#">
+<input id="input_login" class="form_input _req" name="login" type="text">
+<input id="input_password" class="form_input _req" name="password" type="password">
+<button type="submit" class="form_button">Enter</button>
+</form>
+</div>
+
 <h1><%= title %> </h1>
 <% menu.forEach(item => { %> 
     <a href=<%= item.url %>><%= item.title %></a>
 <% }) %> 
+
+<script src="/public/index.js"></script>
+
+</header>
