@@ -7,13 +7,13 @@
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
-    margin: -10px -10px;
     background-color: gray;
 }
 
 .name{
-    width: 50px;
+    width: auto;
     text-align: center;
+    padding: 0 10px 0 10px;
 }
 
 #login_bar > img, input, button{
@@ -30,6 +30,31 @@
     box-shadow: 0 0 0px red;
 }
 
+.form_button {
+    border-radius: 5px;
+    width: 50px;
+}
+
 ._error {
     box-shadow: 0 0 15px red;
+}
+
+h1 {
+    font-size: 40px;
+    padding: 40px;
+    font-family: Impact, fantasy;
+}
+
+.nav_bar {
+    font-size: 20px;
+    padding: 10px;
+    border-bottom: gray solid 2px;
+}
+
+.nav_button{
+    color: black;
+}
+
+.nav_button:hover {
+    color: red;
 }
